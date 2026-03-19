@@ -1,0 +1,54 @@
+@baseUrl = http://localhost:{{port}}
+@port = 5000
+@contentType = application/json
+
+# Fill these after login requests
+@parentToken = PASTE_PARENT_TOKEN_HERE
+@adminToken = PASTE_ADMIN_TOKEN_HERE
+@userId = PASTE_USER_ID_HERE
+
+### Health Check
+GET {{baseUrl}}/
+
+### Register Parent
+POST {{baseUrl}}/api/auth/register
+Content-Type: {{contentType}}
+
+{
+  "name": "Test Parent",
+  "email": "parent@example.com",
+  "password": "Parent@123",
+  "phone": "9876543210"
+}
+
+### Login Parent or Admin
+POST {{baseUrl}}/api/auth/login
+Content-Type: {{contentType}}
+
+{
+  "email": "parent@example.com",
+  "password": "Parent@123"
+}
+
+### Get All Users (Admin Only)
+GET {{baseUrl}}/api/users/
+Authorization: Bearer {{adminToken}}
+
+### Get User By ID (Protected)
+GET {{baseUrl}}/api/users/{{userId}}
+Authorization: Bearer {{parentToken}}
+
+### Update User By ID (Protected)
+PUT {{baseUrl}}/api/users/{{userId}}
+Authorization: Bearer {{parentToken}}
+Content-Type: {{contentType}}
+
+{
+  "name": "Updated Parent Name",
+  "email": "updated.parent@example.com",
+  "phone": "9999999999"
+}
+
+### Delete User By ID (Admin Only)
+DELETE {{baseUrl}}/api/users/{{userId}}
+Authorization: Bearer {{adminToken}}
