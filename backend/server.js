@@ -19,6 +19,8 @@ import settingsRoutes from "./routes/SettingsRoutes.js";
 import auditLogRoutes from "./routes/AuditLogRoutes.js";
 import healthCheckRoutes from "./routes/HealthCheckRoutes.js";
 import cors from "cors";
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./swagger.js";
 
 dotenv.config();
 
@@ -31,6 +33,12 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Welcome to BabyNest API");
+});
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.get("/api-docs.json", (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  res.send(swaggerSpec);
 });
 
 // Authentication & User Routes
