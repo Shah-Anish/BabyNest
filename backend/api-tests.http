@@ -1,0 +1,550 @@
+### BabyNest API Test File
+### Base URL Configuration
+@baseUrl = http://localhost:5000/api
+@authToken = your-auth-token-here
+@adminToken = your-admin-token-here
+
+### Variables (Update these after creating resources)
+@userId =
+@parentId =
+@childId =
+@vaccinationId =
+@reminderId =
+@visitId =
+@prescriptionId =
+@documentId =
+@growthRecordId =
+@recommendationId =
+@tipId =
+@emergencyContactId =
+@doctorId =
+@healthCheckId =
+
+###############################################
+### 1. AUTHENTICATION ROUTES
+###############################################
+
+### Register User
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123",
+  "role": "user"
+}
+
+### Login User
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+###############################################
+### 2. USER ROUTES
+###############################################
+
+### Get All Users (Admin)
+GET {{baseUrl}}/users
+Authorization: Bearer {{adminToken}}
+
+### Get User By ID
+GET {{baseUrl}}/users/{{userId}}
+Authorization: Bearer {{authToken}}
+
+### Update User
+PUT {{baseUrl}}/users/{{userId}}
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "name": "John Doe Updated",
+  "email": "john.updated@example.com"
+}
+
+### Delete User (Admin)
+DELETE {{baseUrl}}/users/{{userId}}
+Authorization: Bearer {{adminToken}}
+
+###############################################
+### 3. CHILD PROFILE ROUTES
+###############################################
+
+### Create Child Profile
+POST {{baseUrl}}/children
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "parentId": "{{parentId}}",
+  "name": "Emma Doe",
+  "birthDate": "2023-05-15",
+  "gender": "female",
+  "medicalConditions": ["Asthma"],
+  "allergies": ["Peanuts", "Dust"]
+}
+
+### Get Children By Parent ID
+GET {{baseUrl}}/children/parent/{{parentId}}
+Authorization: Bearer {{authToken}}
+
+### Get Child By ID
+GET {{baseUrl}}/children/{{childId}}
+Authorization: Bearer {{authToken}}
+
+### Update Child Profile
+PUT {{baseUrl}}/children/{{childId}}
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "name": "Emma Doe Updated",
+  "medicalConditions": ["Asthma", "Eczema"],
+  "allergies": ["Peanuts", "Dust", "Dairy"]
+}
+
+### Delete Child Profile
+DELETE {{baseUrl}}/children/{{childId}}
+Authorization: Bearer {{authToken}}
+
+###############################################
+### 4. VACCINATION ROUTES
+###############################################
+
+### Add Vaccination
+POST {{baseUrl}}/vaccinations
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "childId": "{{childId}}",
+  "name": "MMR Vaccine",
+  "recommendedAge": 12,
+  "status": "pending",
+  "administeredDate": null
+}
+
+### Get Vaccinations By Child ID
+GET {{baseUrl}}/vaccinations/child/{{childId}}
+Authorization: Bearer {{authToken}}
+
+### Update Vaccination Status
+PUT {{baseUrl}}/vaccinations/{{vaccinationId}}
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "status": "completed",
+  "administeredDate": "2024-05-20"
+}
+
+### Delete Vaccination
+DELETE {{baseUrl}}/vaccinations/{{vaccinationId}}
+Authorization: Bearer {{authToken}}
+
+###############################################
+### 5. REMINDER ROUTES
+###############################################
+
+### Create Reminder
+POST {{baseUrl}}/reminders
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "userId": "{{userId}}",
+  "childId": "{{childId}}",
+  "type": "vaccination",
+  "message": "Time for MMR vaccine appointment",
+  "remindAt": "2024-06-01T10:00:00Z"
+}
+
+### Get User Reminders
+GET {{baseUrl}}/reminders/user/{{userId}}
+Authorization: Bearer {{authToken}}
+
+### Update Reminder (Mark as sent)
+PUT {{baseUrl}}/reminders/{{reminderId}}
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "isSent": true
+}
+
+### Delete Reminder
+DELETE {{baseUrl}}/reminders/{{reminderId}}
+Authorization: Bearer {{authToken}}
+
+###############################################
+### 6. MEDICAL VISIT ROUTES
+###############################################
+
+### Create Medical Visit
+POST {{baseUrl}}/medical-visits
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "childId": "{{childId}}",
+  "doctorName": "Dr. Sarah Smith",
+  "visitDate": "2024-03-15",
+  "notes": "Regular checkup. Child is healthy and growing well."
+}
+
+### Get Visits By Child ID
+GET {{baseUrl}}/medical-visits/child/{{childId}}
+Authorization: Bearer {{authToken}}
+
+### Get Visit By ID
+GET {{baseUrl}}/medical-visits/{{visitId}}
+Authorization: Bearer {{authToken}}
+
+### Update Medical Visit
+PUT {{baseUrl}}/medical-visits/{{visitId}}
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "doctorName": "Dr. Sarah Smith Johnson",
+  "notes": "Regular checkup. Child is healthy and growing well. No concerns."
+}
+
+### Delete Medical Visit
+DELETE {{baseUrl}}/medical-visits/{{visitId}}
+Authorization: Bearer {{authToken}}
+
+###############################################
+### 7. PRESCRIPTION ROUTES
+###############################################
+
+### Add Prescription
+POST {{baseUrl}}/prescriptions
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "visitId": "{{visitId}}",
+  "medication": [
+    {
+      "name": "Amoxicillin",
+      "dose": "250mg",
+      "duration": "7 days"
+    },
+    {
+      "name": "Paracetamol",
+      "dose": "100mg",
+      "duration": "As needed"
+    }
+  ],
+  "instructions": "Take medication after meals. Keep child hydrated."
+}
+
+### Get Prescriptions By Visit ID
+GET {{baseUrl}}/prescriptions/visit/{{visitId}}
+Authorization: Bearer {{authToken}}
+
+### Update Prescription
+PUT {{baseUrl}}/prescriptions/{{prescriptionId}}
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "instructions": "Take medication after meals. Keep child hydrated. Monitor for allergic reactions."
+}
+
+### Delete Prescription
+DELETE {{baseUrl}}/prescriptions/{{prescriptionId}}
+Authorization: Bearer {{authToken}}
+
+###############################################
+### 8. MEDICAL DOCUMENT ROUTES
+###############################################
+
+### Upload Document
+POST {{baseUrl}}/medical-documents
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "visitId": "{{visitId}}",
+  "fileUrl": "https://example.com/documents/medical-report.pdf",
+  "fileType": "application/pdf"
+}
+
+### Get Documents By Visit ID
+GET {{baseUrl}}/medical-documents/visit/{{visitId}}
+Authorization: Bearer {{authToken}}
+
+### Delete Document
+DELETE {{baseUrl}}/medical-documents/{{documentId}}
+Authorization: Bearer {{authToken}}
+
+###############################################
+### 9. GROWTH RECORD ROUTES
+###############################################
+
+### Add Growth Record
+POST {{baseUrl}}/growth-records
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "childId": "{{childId}}",
+  "date": "2024-03-15",
+  "height": 85.5,
+  "weight": 12.5
+}
+
+### Get Growth Records By Child ID
+GET {{baseUrl}}/growth-records/child/{{childId}}
+Authorization: Bearer {{authToken}}
+
+### Update Growth Record
+PUT {{baseUrl}}/growth-records/{{growthRecordId}}
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "height": 86.0,
+  "weight": 12.8
+}
+
+### Delete Growth Record
+DELETE {{baseUrl}}/growth-records/{{growthRecordId}}
+Authorization: Bearer {{authToken}}
+
+###############################################
+### 10. GROWTH ANALYTICS ROUTES
+###############################################
+
+### Get Growth Analytics By Child ID
+GET {{baseUrl}}/growth-analytics/child/{{childId}}
+Authorization: Bearer {{authToken}}
+
+###############################################
+### 11. NUTRITION RECOMMENDATION ROUTES (Admin)
+###############################################
+
+### Create Nutrition Recommendation (Admin)
+POST {{baseUrl}}/nutrition-recommendations
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "ageInMonths": 12,
+  "dietTips": "Start introducing solid foods. Include iron-rich foods like pureed meat, beans. Continue breastfeeding or formula."
+}
+
+### Get All Nutrition Recommendations
+GET {{baseUrl}}/nutrition-recommendations
+Authorization: Bearer {{authToken}}
+
+### Get Nutrition Recommendations By Age
+GET {{baseUrl}}/nutrition-recommendations?ageInMonths=12
+Authorization: Bearer {{authToken}}
+
+### Update Nutrition Recommendation (Admin)
+PUT {{baseUrl}}/nutrition-recommendations/{{recommendationId}}
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "dietTips": "Start introducing solid foods. Include iron-rich foods like pureed meat, beans, iron-fortified cereals. Continue breastfeeding or formula."
+}
+
+### Delete Nutrition Recommendation (Admin)
+DELETE {{baseUrl}}/nutrition-recommendations/{{recommendationId}}
+Authorization: Bearer {{adminToken}}
+
+###############################################
+### 12. DAILY CARE TIP ROUTES (Admin)
+###############################################
+
+### Create Daily Care Tip (Admin)
+POST {{baseUrl}}/daily-care-tips
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "ageInMonths": 6,
+  "tip": "Establish a consistent bedtime routine. Most 6-month-olds need 14-15 hours of sleep per day."
+}
+
+### Get All Daily Care Tips
+GET {{baseUrl}}/daily-care-tips
+Authorization: Bearer {{authToken}}
+
+### Get Daily Care Tips By Age
+GET {{baseUrl}}/daily-care-tips?ageInMonths=6
+Authorization: Bearer {{authToken}}
+
+### Update Daily Care Tip (Admin)
+PUT {{baseUrl}}/daily-care-tips/{{tipId}}
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "tip": "Establish a consistent bedtime routine. Most 6-month-olds need 14-15 hours of sleep per day, including naps."
+}
+
+### Delete Daily Care Tip (Admin)
+DELETE {{baseUrl}}/daily-care-tips/{{tipId}}
+Authorization: Bearer {{adminToken}}
+
+###############################################
+### 13. EMERGENCY CONTACT ROUTES
+###############################################
+
+### Add Emergency Contact
+POST {{baseUrl}}/emergency-contacts
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "parentId": "{{parentId}}",
+  "name": "Jane Doe",
+  "relation": "Grandmother",
+  "phone": "+1-555-0123"
+}
+
+### Get Emergency Contacts By Parent ID
+GET {{baseUrl}}/emergency-contacts/parent/{{parentId}}
+Authorization: Bearer {{authToken}}
+
+### Update Emergency Contact
+PUT {{baseUrl}}/emergency-contacts/{{emergencyContactId}}
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "phone": "+1-555-0124",
+  "relation": "Grandmother (Primary)"
+}
+
+### Delete Emergency Contact
+DELETE {{baseUrl}}/emergency-contacts/{{emergencyContactId}}
+Authorization: Bearer {{authToken}}
+
+###############################################
+### 14. DOCTOR CONTACT ROUTES
+###############################################
+
+### Add Doctor Contact
+POST {{baseUrl}}/doctor-contacts
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "parentId": "{{parentId}}",
+  "name": "Dr. Sarah Smith",
+  "specialization": "Pediatrician",
+  "phone": "+1-555-0200",
+  "hospital": "City Children's Hospital"
+}
+
+### Get Doctor Contacts By Parent ID
+GET {{baseUrl}}/doctor-contacts/parent/{{parentId}}
+Authorization: Bearer {{authToken}}
+
+### Update Doctor Contact
+PUT {{baseUrl}}/doctor-contacts/{{doctorId}}
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "phone": "+1-555-0201",
+  "hospital": "City Children's Hospital - Main Branch"
+}
+
+### Delete Doctor Contact
+DELETE {{baseUrl}}/doctor-contacts/{{doctorId}}
+Authorization: Bearer {{authToken}}
+
+###############################################
+### 15. HEALTH CHECK ROUTES
+###############################################
+
+### Create Health Check
+POST {{baseUrl}}/health-checks
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "childId": "{{childId}}",
+  "date": "2024-03-20",
+  "status": "good",
+  "notes": "Child is active, eating well, no fever."
+}
+
+### Get Health Checks By Child ID
+GET {{baseUrl}}/health-checks/child/{{childId}}
+Authorization: Bearer {{authToken}}
+
+### Update Health Check
+PUT {{baseUrl}}/health-checks/{{healthCheckId}}
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "status": "average",
+  "notes": "Child has mild cold symptoms. Monitoring."
+}
+
+### Delete Health Check
+DELETE {{baseUrl}}/health-checks/{{healthCheckId}}
+Authorization: Bearer {{authToken}}
+
+###############################################
+### 16. SETTINGS ROUTES (Admin)
+###############################################
+
+### Get All Settings (Admin)
+GET {{baseUrl}}/settings
+Authorization: Bearer {{adminToken}}
+
+### Get Setting By Key (Admin)
+GET {{baseUrl}}/settings?key=app_name
+Authorization: Bearer {{adminToken}}
+
+### Update/Create Setting (Admin)
+PUT {{baseUrl}}/settings
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "key": "app_name",
+  "value": "BabyNest Pro"
+}
+
+###############################################
+### 17. AUDIT LOG ROUTES (Admin)
+###############################################
+
+### Get All Audit Logs (Admin)
+GET {{baseUrl}}/audit-logs
+Authorization: Bearer {{adminToken}}
+
+### Get Audit Logs By User ID (Admin)
+GET {{baseUrl}}/audit-logs?userId={{userId}}
+Authorization: Bearer {{adminToken}}
+
+### Get Audit Logs By Action (Admin)
+GET {{baseUrl}}/audit-logs?action=user_login
+Authorization: Bearer {{adminToken}}
+
+### Get Audit Logs By Date Range (Admin)
+GET {{baseUrl}}/audit-logs?startDate=2024-03-01&endDate=2024-03-31
+Authorization: Bearer {{adminToken}}
+
+### Get Audit Logs With Limit (Admin)
+GET {{baseUrl}}/audit-logs?limit=50
+Authorization: Bearer {{adminToken}}
+
+### Get Audit Logs With Multiple Filters (Admin)
+GET {{baseUrl}}/audit-logs?userId={{userId}}&action=user_login&startDate=2024-03-01&limit=20
+Authorization: Bearer {{adminToken}}
