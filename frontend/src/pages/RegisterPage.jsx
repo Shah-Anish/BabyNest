@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { authAPI } from '../api/api';
+import { Link, useNavigate } from 'react-router-dom';
+import { authService } from '../services/authService';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Alert } from '../components/ui/alert';
 import { ArrowRight, Loader2 } from 'lucide-react';
 
 export default function RegisterPage() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -61,18 +62,18 @@ export default function RegisterPage() {
 
     setLoading(true);
     try {
-      const response = await authAPI.register(formData);
-      console.log('Registration successful:', response.data);
+      const response = await authService.register(formData);
+      console.log('Registration successful:', response);
       setSuccess(true);
       setFormData({ name: '', email: '', password: '', phone: '' });
 
       setTimeout(() => {
-        window.location.href = '/login';
+        navigate('/login');
       }, 2000);
     } catch (error) {
       console.error('Registration error:', error);
       setErrors({
-        submit: error.response?.data?.message || 'Registration failed. Please try again.'
+        submit: error.message || 'Registration failed. Please try again.'
       });
     } finally {
       setLoading(false);
@@ -80,29 +81,29 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-white to-neutral-50 flex">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-background flex">
       {/* Left Side - Branding */}
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 p-12 flex-col justify-between relative overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-primary via-primary/80 to-primary p-12 flex-col justify-between relative overflow-hidden">
         {/* Decorative circles */}
         <div className="absolute top-20 left-20 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl"></div>
 
         <div className="relative z-10">
           <Link to="/" className="inline-block">
-            <h2 className="text-3xl font-semibold text-white">ChildNest</h2>
+            <h2 className="text-3xl font-semibold text-primary-foreground">ChildNest</h2>
           </Link>
         </div>
 
         <div className="relative z-10 space-y-6">
-          <h1 className="text-4xl md:text-5xl font-semibold text-white leading-tight">
+          <h1 className="text-4xl md:text-5xl font-semibold text-primary-foreground leading-tight">
             Join thousands of<br />families today
           </h1>
-          <p className="text-lg text-neutral-300 max-w-md">
+          <p className="text-lg text-primary-foreground/80 max-w-md">
             Create your account and start managing your child's care with ease. Connect with family, track milestones, and stay organized.
           </p>
         </div>
 
-        <div className="relative z-10 text-sm text-neutral-400">
+        <div className="relative z-10 text-sm text-primary-foreground/60">
           © 2026 ChildNest. All rights reserved.
         </div>
       </div>
@@ -113,16 +114,16 @@ export default function RegisterPage() {
           {/* Logo for mobile */}
           <div className="lg:hidden text-center">
             <Link to="/">
-              <h2 className="text-2xl font-semibold text-neutral-900">ChildNest</h2>
+              <h2 className="text-2xl font-semibold text-foreground">ChildNest</h2>
             </Link>
           </div>
 
           {/* Header */}
           <div className="space-y-2 text-center lg:text-left">
-            <h1 className="text-3xl font-semibold tracking-tight text-neutral-900">
+            <h1 className="text-3xl font-semibold tracking-tight text-foreground">
               Create your account
             </h1>
-            <p className="text-neutral-600">
+            <p className="text-muted-foreground">
               Get started with ChildNest in just a few steps
             </p>
           </div>
@@ -143,7 +144,7 @@ export default function RegisterPage() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
-              <label htmlFor="name" className="text-sm font-medium text-neutral-900">
+              <label htmlFor="name" className="text-sm font-medium text-foreground">
                 Full name
               </label>
               <Input
@@ -162,7 +163,7 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="email" className="text-sm font-medium text-neutral-900">
+              <label htmlFor="email" className="text-sm font-medium text-foreground">
                 Email address
               </label>
               <Input
@@ -181,7 +182,7 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="password" className="text-sm font-medium text-neutral-900">
+              <label htmlFor="password" className="text-sm font-medium text-foreground">
                 Password
               </label>
               <Input
@@ -200,7 +201,7 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="phone" className="text-sm font-medium text-neutral-900">
+              <label htmlFor="phone" className="text-sm font-medium text-foreground">
                 Phone number
               </label>
               <Input
@@ -222,7 +223,7 @@ export default function RegisterPage() {
             <Button
               type="submit"
               disabled={loading}
-              className="w-full h-12 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-base"
+              className="w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-base"
             >
               {loading ? (
                 <>
@@ -237,21 +238,21 @@ export default function RegisterPage() {
               )}
             </Button>
 
-            <p className="text-xs text-center text-neutral-500">
+            <p className="text-xs text-center text-muted-foreground">
               By creating an account, you agree to our{' '}
-              <a href="#" className="underline hover:text-neutral-900">Terms of Service</a>
+              <a href="#" className="underline hover:text-foreground">Terms of Service</a>
               {' '}and{' '}
-              <a href="#" className="underline hover:text-neutral-900">Privacy Policy</a>.
+              <a href="#" className="underline hover:text-foreground">Privacy Policy</a>.
             </p>
           </form>
 
           {/* Separator */}
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-neutral-200"></div>
+              <div className="w-full border-t border-border"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-white text-neutral-500">Already have an account?</span>
+              <span className="px-4 bg-background text-muted-foreground">Already have an account?</span>
             </div>
           </div>
 
@@ -259,7 +260,7 @@ export default function RegisterPage() {
           <div className="text-center">
             <Link
               to="/login"
-              className="inline-flex items-center text-sm font-medium text-neutral-900 hover:text-neutral-700 transition-colors"
+              className="inline-flex items-center text-sm font-medium text-foreground hover:text-muted-foreground transition-colors"
             >
               Sign in to your account
               <ArrowRight className="ml-1 h-3 w-3" />
