@@ -2,7 +2,7 @@ import { Link, useLocation, Outlet, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard, Baby, Syringe, Bell, Stethoscope, BarChart3,
-  Utensils, Calendar, AlertTriangle, Settings, Shield, Menu, X, LogOut
+  Utensils, Calendar, AlertTriangle, Settings, Menu, X, LogOut
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -24,7 +24,7 @@ const parentNav = [
 const ParentDashboard = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { logout, user, isAdmin } = useAuth();
+  const { logout, user } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleLogout = () => {
@@ -79,11 +79,6 @@ const ParentDashboard = () => {
         </nav>
 
         <div className="p-3 border-t border-border space-y-1">
-          {isAdmin() && (
-            <Button variant="ghost" className="w-full justify-start gap-3 text-muted-foreground" asChild>
-              <Link to="/admin"><Shield className="w-4 h-4" /> Admin Panel</Link>
-            </Button>
-          )}
           <Button
             variant="ghost"
             className="w-full justify-start gap-3 text-muted-foreground"
