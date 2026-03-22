@@ -19,6 +19,7 @@ import {
   Settings,
   Sparkles
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const features = [
@@ -123,11 +124,7 @@ const Home = () => {
       <section className="relative px-6 py-20 md:py-32 overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="text-center space-y-6 max-w-4xl mx-auto">
-            <div className="inline-block">
-              <span className="inline-flex items-center rounded-full bg-secondary px-4 py-1.5 text-xs font-medium text-foreground ring-1 ring-inset ring-border">
-                Welcome to ChildNest
-              </span>
-            </div>
+
 
             <h1 className="text-5xl md:text-7xl font-semibold tracking-tight text-foreground leading-[1.1]">
               Everything you need
@@ -143,12 +140,14 @@ const Home = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-center pt-4">
-              <Button size="lg" className="rounded-full bg-neutral-900 hover:bg-neutral-800 px-8 h-12 text-base">
-                Get Started
-                <ArrowRight className="ml-2 h-4 w-4" />
+              <Button asChild size="lg" className="rounded-full bg-neutral-900 hover:bg-neutral-800 px-8 h-12 text-base">
+                <Link to="/register">
+                  Get Started
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
               </Button>
-              <Button size="lg" variant="outline" className="rounded-full px-8 h-12 text-base border-border hover:bg-secondary">
-                Learn More
+              <Button asChild size="lg" variant="outline" className="rounded-full px-8 h-12 text-base border-border hover:bg-secondary">
+                <a href="#features">Learn More</a>
               </Button>
             </div>
           </div>
@@ -163,7 +162,7 @@ const Home = () => {
       <Separator className="max-w-6xl mx-auto" />
 
       {/* Stats Section */}
-      <section className="px-6 py-20 md:py-32">
+      <section id="features" className="px-6 py-20 md:py-32">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
