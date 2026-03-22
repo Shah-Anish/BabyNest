@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 
-const ProtectedRoute = ({ children, requireAdmin = false }) => {
+const ProtectedRoute = ({ children, requireAdmin = false, requireParent = false }) => {
   const token = localStorage.getItem('token');
   const user = JSON.parse(localStorage.getItem('user') || '{}');
 
@@ -12,6 +12,11 @@ const ProtectedRoute = ({ children, requireAdmin = false }) => {
   // Check if admin access is required
   if (requireAdmin && user.role !== 'admin') {
     return <Navigate to="/" replace />;
+  }
+
+  // Check if parent access is required (not admin)
+  if (requireParent && user.role === 'admin') {
+    return <Navigate to="/admin" replace />;
   }
 
   return children;
