@@ -1,12 +1,15 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { authAPI } from '../api/api';
+import { Link, useNavigate } from 'react-router-dom';
+import { authService } from '../services/authService';
+import { useAuth } from '../context/AuthContext';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Alert } from '../components/ui/alert';
 import { ArrowRight, Loader2 } from 'lucide-react';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -50,26 +53,30 @@ const LoginPage = () => {
     setErrors({});
 
     try {
-      const response = await authAPI.login(formData);
-      const data = response?.data || {};
+      const response = await authService.login(formData.email, formData.password);
+      const data = response?.data || response;
       const token = data.token || data.accessToken || data?.data?.token || data?.data?.accessToken;
       const user = data.user || data?.data?.user || null;
 
-      if (token) {
-        localStorage.setItem('token', token);
-      }
-      if (user) {
-        localStorage.setItem('user', JSON.stringify(user));
-      }
+      if (token && user) {
+        // Use AuthContext login method
+        login(user, token);
+        setSuccess(true);
 
-      setSuccess(true);
-
-      setTimeout(() => {
-        window.location.href = '/';
-      }, 1200);
+        // Redirect based on role
+        setTimeout(() => {
+          if (user.role === 'admin') {
+            navigate('/admin');
+          } else {
+            navigate('/');
+          }
+        }, 1200);
+      } else {
+        throw new Error('Invalid response from server');
+      }
     } catch (error) {
       setErrors({
-        submit: error.response?.data?.message || 'Login failed. Please try again.',
+        submit: error.message || error.response?.data?.message || 'Login failed. Please try again.',
       });
     } finally {
       setLoading(false);
