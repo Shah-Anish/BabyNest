@@ -19,6 +19,7 @@ import settingsRoutes from "./routes/SettingsRoutes.js";
 import auditLogRoutes from "./routes/AuditLogRoutes.js";
 import healthCheckRoutes from "./routes/HealthCheckRoutes.js";
 import parentRoutes from "./routes/ParentRoutes.js";
+import adminRoutes from "./routes/AdminRoutes.js";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./swagger.js";
@@ -48,6 +49,9 @@ app.use("/api/users", userRoutes);
 
 // Parent Dashboard Routes
 app.use("/api/parent", parentRoutes);
+
+// Admin Routes
+app.use("/api/admin", adminRoutes);
 
 // Child Management Routes
 app.use("/api/children", childRoutes);
