@@ -37,7 +37,6 @@ const AccordionItem = React.forwardRef(({ className, value, isOpen, toggle, chil
   <div
     ref={ref}
     className={cn("border-b border-neutral-200", className)}
-    {...props}
   >
     {React.Children.map(children, (child) =>
       React.isValidElement(child)
@@ -69,14 +68,13 @@ const AccordionTrigger = React.forwardRef(({ className, children, isOpen, toggle
 ))
 AccordionTrigger.displayName = "AccordionTrigger"
 
-const AccordionContent = React.forwardRef(({ className, children, isOpen, ...props }, ref) => (
+const AccordionContent = React.forwardRef(({ className, children, isOpen, toggle, ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
       "overflow-hidden text-sm transition-all",
       isOpen ? "animate-slideDown" : "animate-slideUp hidden"
     )}
-    {...props}
   >
     <div className={cn("pb-5 pt-0", className)}>{children}</div>
   </div>
