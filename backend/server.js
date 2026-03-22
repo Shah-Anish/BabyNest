@@ -18,6 +18,7 @@ import doctorContactRoutes from "./routes/DoctorContactRoutes.js";
 import settingsRoutes from "./routes/SettingsRoutes.js";
 import auditLogRoutes from "./routes/AuditLogRoutes.js";
 import healthCheckRoutes from "./routes/HealthCheckRoutes.js";
+import parentRoutes from "./routes/ParentRoutes.js";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./swagger.js";
@@ -44,6 +45,9 @@ app.get("/api-docs.json", (req, res) => {
 // Authentication & User Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
+
+// Parent Dashboard Routes
+app.use("/api/parent", parentRoutes);
 
 // Child Management Routes
 app.use("/api/children", childRoutes);
