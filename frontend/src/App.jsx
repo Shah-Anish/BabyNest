@@ -44,7 +44,7 @@ const AppContent = () => {
           <Route
             path="/dashboard"
             element={
-              <ProtectedRoute requireAdmin={false}>
+              <ProtectedRoute requireParent={true}>
                 <ParentDashboard />
               </ProtectedRoute>
             }
