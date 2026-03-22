@@ -1,14 +1,22 @@
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { AlertTriangle, Plus, Phone, Mail, MapPin, AlertCircle } from "lucide-react";
+import { AlertTriangle, Plus, Phone, Mail, MapPin, AlertCircle, X } from "lucide-react";
 import { parentService } from "@/services/parentService";
 
 const Emergency = () => {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    relationship: "",
+    phone: "",
+    email: "",
+    address: ""
+  });
 
   useEffect(() => {
     fetchContacts();
@@ -36,6 +44,43 @@ const Emergency = () => {
     }
   };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleAddContact = async () => {
+    if (!formData.name || !formData.phone) {
+      alert("Please provide contact name and phone number");
+      return;
+    }
+
+    try {
+      setSubmitting(true);
+      await parentService.addEmergencyContact({
+        name: formData.name,
+        relationship: formData.relationship,
+        phone: formData.phone,
+        email: formData.email,
+        address: formData.address
+      });
+
+      setFormData({
+        name: "",
+        relationship: "",
+        phone: "",
+        email: "",
+        address: ""
+      });
+      setShowModal(false);
+      fetchContacts();
+    } catch (err) {
+      alert("Error adding contact: " + err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -57,7 +102,7 @@ const Emergency = () => {
           <h1 className="text-3xl font-display font-bold">Emergency Information</h1>
           <p className="text-muted-foreground mt-1">Important contacts and resources</p>
         </div>
-        <Button className="gap-2">
+        <Button className="gap-2" onClick={() => setShowModal(true)}>
           <Plus className="w-4 h-4" />
           Add Contact
         </Button>
@@ -141,6 +186,101 @@ const Emergency = () => {
           )}
         </div>
       </Card>
+
+      {showModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <Card className="w-full max-w-md">
+            <div className="flex items-center justify-between p-6 border-b">
+              <h2 className="text-xl font-semibold">Add Emergency Contact</h2>
+              <button
+                onClick={() => setShowModal(false)}
+                className="text-muted-foreground hover:text-foreground"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-2">Name *</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="e.g., John Doe"
+                  className="w-full px-3 py-2 border border-input rounded-md bg-background"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2">Relationship</label>
+                <input
+                  type="text"
+                  name="relationship"
+                  value={formData.relationship}
+                  onChange={handleInputChange}
+                  placeholder="e.g., Grandfather, Neighbor"
+                  className="w-full px-3 py-2 border border-input rounded-md bg-background"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2">Phone *</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder="e.g., +1 9876543210"
+                  className="w-full px-3 py-2 border border-input rounded-md bg-background"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="e.g., contact@example.com"
+                  className="w-full px-3 py-2 border border-input rounded-md bg-background"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2">Address</label>
+                <textarea
+                  name="address"
+                  value={formData.address}
+                  onChange={handleInputChange}
+                  placeholder="e.g., 123 Main Street"
+                  rows="2"
+                  className="w-full px-3 py-2 border border-input rounded-md bg-background resize-none"
+                />
+              </div>
+            </div>
+
+            <div className="flex gap-2 p-6 border-t">
+              <Button
+                variant="outline"
+                className="flex-1"
+                onClick={() => setShowModal(false)}
+              >
+                Cancel
+              </Button>
+              <Button
+                className="flex-1"
+                onClick={handleAddContact}
+                disabled={submitting}
+              >
+                {submitting ? "Adding..." : "Add Contact"}
+              </Button>
+            </div>
+          </Card>
+        </div>
+      )}
     </div>
   );
 };
