@@ -118,18 +118,18 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-neutral-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-background via-background to-background">
       {/* Hero Section */}
       <section className="relative px-6 py-20 md:py-32 overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="text-center space-y-6 max-w-4xl mx-auto">
             <div className="inline-block">
-              <span className="inline-flex items-center rounded-full bg-neutral-100 px-4 py-1.5 text-xs font-medium text-neutral-700 ring-1 ring-inset ring-neutral-200">
+              <span className="inline-flex items-center rounded-full bg-secondary px-4 py-1.5 text-xs font-medium text-foreground ring-1 ring-inset ring-border">
                 Welcome to ChildNest
               </span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-semibold tracking-tight text-neutral-900 leading-[1.1]">
+            <h1 className="text-5xl md:text-7xl font-semibold tracking-tight text-foreground leading-[1.1]">
               Everything you need
               <br />
               <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
@@ -137,7 +137,7 @@ const Home = () => {
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               A comprehensive platform designed to simplify parenting, connect families,
               and ensure your child thrives at every stage.
             </p>
@@ -147,7 +147,7 @@ const Home = () => {
                 Get Started
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button size="lg" variant="outline" className="rounded-full px-8 h-12 text-base border-neutral-300 hover:bg-neutral-50">
+              <Button size="lg" variant="outline" className="rounded-full px-8 h-12 text-base border-border hover:bg-secondary">
                 Learn More
               </Button>
             </div>
@@ -168,10 +168,10 @@ const Home = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center space-y-2">
-                <div className="text-4xl md:text-5xl font-semibold text-neutral-900">
+                <div className="text-4xl md:text-5xl font-semibold text-foreground">
                   {stat.number}
                 </div>
-                <div className="text-sm text-neutral-600">{stat.label}</div>
+                <div className="text-sm text-muted-foreground">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -196,17 +196,17 @@ const Home = () => {
             {features.map((feature, index) => (
               <Card
                 key={index}
-                className="border-neutral-200 bg-white hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                className="border-border bg-card hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
               >
                 <CardContent className="p-6 space-y-4">
                   <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-green-100 to-emerald-100">
                     <feature.icon className="h-6 w-6 text-green-700" />
                   </div>
                   <div className="space-y-2">
-                    <h3 className="text-lg font-semibold text-neutral-900">
+                    <h3 className="text-lg font-semibold text-foreground">
                       {feature.title}
                     </h3>
-                    <p className="text-sm text-neutral-600 leading-relaxed">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       {feature.description}
                     </p>
                   </div>
@@ -234,22 +234,22 @@ const Home = () => {
               <div key={index} className="relative text-center">
                 <div className="flex flex-col items-center space-y-4">
                   <div className="relative">
-                    <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-neutral-900 text-white">
+                    <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-primary text-primary-foreground">
                       <step.icon className="h-8 w-8" />
                     </div>
                     <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-green-500 text-white text-sm font-semibold flex items-center justify-center">
                       {index + 1}
                     </div>
                   </div>
-                  <h3 className="text-xl font-semibold text-neutral-900">
+                  <h3 className="text-xl font-semibold text-foreground">
                     {step.title}
                   </h3>
-                  <p className="text-neutral-600 leading-relaxed max-w-xs">
+                  <p className="text-muted-foreground leading-relaxed max-w-xs">
                     {step.description}
                   </p>
                 </div>
                 {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-[60%] w-[80%] border-t-2 border-dashed border-neutral-300"></div>
+                  <div className="hidden md:block absolute top-8 left-[60%] w-[80%] border-t-2 border-dashed border-border"></div>
                 )}
               </div>
             ))}
@@ -273,7 +273,7 @@ const Home = () => {
             {testimonials.map((testimonial, index) => (
               <Card
                 key={index}
-                className="border-neutral-200 bg-white"
+                className="border-border bg-card"
               >
                 <CardContent className="p-6 space-y-4">
                   <div className="flex gap-1">
@@ -281,14 +281,14 @@ const Home = () => {
                       <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
-                  <p className="text-neutral-700 leading-relaxed text-sm">
+                  <p className="text-foreground leading-relaxed text-sm">
                     "{testimonial.content}"
                   </p>
                   <div className="pt-2">
-                    <div className="font-semibold text-neutral-900 text-sm">
+                    <div className="font-semibold text-foreground text-sm">
                       {testimonial.name}
                     </div>
-                    <div className="text-xs text-neutral-500">
+                    <div className="text-xs text-muted-foreground">
                       {testimonial.role}
                     </div>
                   </div>
@@ -300,26 +300,26 @@ const Home = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="px-6 py-20 md:py-32 bg-neutral-50">
+      <section className="px-6 py-20 md:py-32 bg-secondary">
         <div className="max-w-3xl mx-auto">
           <div className="text-center space-y-4 mb-12">
-            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-neutral-900">
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-foreground">
               Frequently asked questions
             </h2>
-            <p className="text-lg text-neutral-600">
+            <p className="text-lg text-muted-foreground">
               Everything you need to know about ChildNest.
             </p>
           </div>
 
-          <Card className="border-neutral-200 bg-white">
+          <Card className="border-border bg-card">
             <CardContent className="p-6">
               <Accordion type="single" collapsible className="w-full">
                 {faqs.map((faq, index) => (
                   <AccordionItem key={index} value={`item-${index}`}>
-                    <AccordionTrigger className="text-left text-neutral-900 font-medium">
+                    <AccordionTrigger className="text-left text-foreground font-medium">
                       {faq.question}
                     </AccordionTrigger>
-                    <AccordionContent className="text-neutral-600 leading-relaxed">
+                    <AccordionContent className="text-muted-foreground leading-relaxed">
                       {faq.answer}
                     </AccordionContent>
                   </AccordionItem>
@@ -329,9 +329,9 @@ const Home = () => {
           </Card>
 
           <div className="text-center mt-8">
-            <p className="text-neutral-600">
+            <p className="text-muted-foreground">
               Still have questions?{' '}
-              <a href="#" className="text-neutral-900 font-medium hover:underline">
+              <a href="#" className="text-foreground font-medium hover:underline">
                 Contact our support team
               </a>
             </p>
@@ -342,16 +342,16 @@ const Home = () => {
       {/* CTA Section */}
       <section className="px-6 py-20 md:py-32">
         <div className="max-w-4xl mx-auto">
-          <Card className="border-neutral-200 bg-gradient-to-br from-neutral-50 to-white overflow-hidden">
+          <Card className="border-border bg-gradient-to-br from-secondary to-card overflow-hidden">
             <CardContent className="p-12 md:p-16 text-center space-y-6">
-              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-neutral-900">
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground">
                 Ready to get started?
               </h2>
-              <p className="text-lg text-neutral-600 max-w-xl mx-auto">
+              <p className="text-lg text-muted-foreground max-w-xl mx-auto">
                 Join thousands of families who trust ChildNest for their child care coordination.
               </p>
               <div className="pt-4">
-                <Button size="lg" className="rounded-full bg-neutral-900 hover:bg-neutral-800 px-8 h-12 text-base">
+                <Button size="lg" className="rounded-full bg-primary hover:bg-primary/90 px-8 h-12 text-base">
                   Create Your Account
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
