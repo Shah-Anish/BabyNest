@@ -84,29 +84,29 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-white to-neutral-50 flex">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-background flex">
       {/* Left Side - Branding */}
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 p-12 flex-col justify-between relative overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-primary via-primary/80 to-primary p-12 flex-col justify-between relative overflow-hidden">
         {/* Decorative circles */}
         <div className="absolute top-20 left-20 w-72 h-72 bg-green-500/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-green-600/10 rounded-full blur-3xl"></div>
 
         <div className="relative z-10">
           <Link to="/" className="inline-block">
-            <h2 className="text-3xl font-semibold text-white">ChildNest</h2>
+            <h2 className="text-3xl font-semibold text-primary-foreground">ChildNest</h2>
           </Link>
         </div>
 
         <div className="relative z-10 space-y-6">
-          <h1 className="text-4xl md:text-5xl font-semibold text-white leading-tight">
+          <h1 className="text-4xl md:text-5xl font-semibold text-primary-foreground leading-tight">
             Welcome back to<br />your family hub
           </h1>
-          <p className="text-lg text-neutral-300 max-w-md">
+          <p className="text-lg text-primary-foreground/80 max-w-md">
             Access your dashboard to manage your child's care, connect with family, and stay organized.
           </p>
         </div>
 
-        <div className="relative z-10 text-sm text-neutral-400">
+        <div className="relative z-10 text-sm text-primary-foreground/60">
           © 2026 ChildNest. All rights reserved.
         </div>
       </div>
@@ -117,16 +117,16 @@ const LoginPage = () => {
           {/* Logo for mobile */}
           <div className="lg:hidden text-center">
             <Link to="/">
-              <h2 className="text-2xl font-semibold text-neutral-900">ChildNest</h2>
+              <h2 className="text-2xl font-semibold text-foreground">ChildNest</h2>
             </Link>
           </div>
 
           {/* Header */}
           <div className="space-y-2 text-center lg:text-left">
-            <h1 className="text-3xl font-semibold tracking-tight text-neutral-900">
+            <h1 className="text-3xl font-semibold tracking-tight text-foreground">
               Sign in to your account
             </h1>
-            <p className="text-neutral-600">
+            <p className="text-muted-foreground">
               Enter your credentials to access your dashboard
             </p>
           </div>
@@ -147,7 +147,7 @@ const LoginPage = () => {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
-              <label htmlFor="email" className="text-sm font-medium text-neutral-900">
+              <label htmlFor="email" className="text-sm font-medium text-foreground">
                 Email address
               </label>
               <Input
@@ -167,10 +167,10 @@ const LoginPage = () => {
 
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <label htmlFor="password" className="text-sm font-medium text-neutral-900">
+                <label htmlFor="password" className="text-sm font-medium text-foreground">
                   Password
                 </label>
-                <a href="#" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">
+                <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                   Forgot password?
                 </a>
               </div>
@@ -192,7 +192,7 @@ const LoginPage = () => {
             <Button
               type="submit"
               disabled={loading}
-              className="w-full h-12 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-base"
+              className="w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-base"
             >
               {loading ? (
                 <>
@@ -211,10 +211,10 @@ const LoginPage = () => {
           {/* Separator */}
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-neutral-200"></div>
+              <div className="w-full border-t border-border"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-white text-neutral-500">Don't have an account?</span>
+              <span className="px-4 bg-background text-muted-foreground">Don't have an account?</span>
             </div>
           </div>
 
@@ -222,7 +222,7 @@ const LoginPage = () => {
           <div className="text-center">
             <Link
               to="/register"
-              className="inline-flex items-center text-sm font-medium text-neutral-900 hover:text-neutral-700 transition-colors"
+              className="inline-flex items-center text-sm font-medium text-foreground hover:text-muted-foreground transition-colors"
             >
               Create a new account
               <ArrowRight className="ml-1 h-3 w-3" />
