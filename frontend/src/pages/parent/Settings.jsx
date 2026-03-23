@@ -110,7 +110,7 @@ const Settings = () => {
               <Input
                 value={profileData.phone}
                 onChange={(e) => setProfileData({ ...profileData, phone: e.target.value })}
-                placeholder="+1 (555) 123-4567"
+                placeholder="+977 9841234567"
               />
             </div>
             <Button type="submit" disabled={loading} className="w-full">
