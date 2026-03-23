@@ -171,7 +171,7 @@ const MedicalRecords = () => {
                   name="doctorName"
                   value={formData.doctorName}
                   onChange={handleFormChange}
-                  placeholder="Dr. Smith"
+                  placeholder="Dr. Sharma"
                   className="w-full px-3 py-2 border border-border rounded-md text-sm"
                 />
               </div>
