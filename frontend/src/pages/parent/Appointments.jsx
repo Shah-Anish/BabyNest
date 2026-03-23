@@ -292,7 +292,7 @@ const Appointments = () => {
                   name="doctorName"
                   value={formData.doctorName}
                   onChange={handleModalInputChange}
-                  placeholder="e.g., Dr. Smith"
+                  placeholder="e.g., Dr. Sharma"
                   className="w-full px-3 py-2 border border-input rounded-md bg-background"
                 />
               </div>
@@ -305,7 +305,7 @@ const Appointments = () => {
                   name="location"
                   value={formData.location}
                   onChange={handleModalInputChange}
-                  placeholder="e.g., City Hospital, Dr. Smith's Clinic"
+                  placeholder="e.g., Norvic Hospital, Dr. Sharma's Clinic"
                   className="w-full px-3 py-2 border border-input rounded-md bg-background"
                 />
               </div>
