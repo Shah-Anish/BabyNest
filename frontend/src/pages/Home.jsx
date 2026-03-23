@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Separator } from '../components/ui/separator';
@@ -19,8 +21,22 @@ import {
   Sparkles
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Home = () => {
+  const navigate = useNavigate();
+  const { isAuthenticated, isAdmin } = useAuth();
+
+  useEffect(() => {
+    // Redirect logged-in users to their respective dashboard
+    if (isAuthenticated()) {
+      if (isAdmin()) {
+        navigate('/admin');
+      } else {
+        navigate('/dashboard');
+      }
+    }
+  }, [isAuthenticated, isAdmin, navigate]);
   const features = [
     {
       icon: Shield,
@@ -45,10 +61,10 @@ const Home = () => {
   ];
 
   const stats = [
-    { number: '50K+', label: 'Active Families' },
+    { number: '15K+', label: 'Active Families' },
     { number: '98%', label: 'Satisfaction Rate' },
     { number: '24/7', label: 'Support Available' },
-    { number: '150+', label: 'Countries Served' },
+    { number: '77+', label: 'Districts Served' },
   ];
 
   const steps = [
@@ -71,19 +87,19 @@ const Home = () => {
 
   const testimonials = [
     {
-      name: 'Sarah Johnson',
+      name: 'Sita Sharma',
       role: 'Mother of 2',
       content: 'BabyNest has transformed how we manage our family schedule. Everything we need is in one place, and sharing updates with grandparents has never been easier.',
       rating: 5,
     },
     {
-      name: 'Michael Chen',
+      name: 'Rajesh Thapa',
       role: 'Father of 1',
       content: 'The health tracking features are incredible. We can see growth charts, vaccination records, and doctor notes all organized beautifully. Highly recommend!',
       rating: 5,
     },
     {
-      name: 'Emily Rodriguez',
+      name: 'Anjali Poudel',
       role: 'Mother of 3',
       content: 'As a busy mom of three, BabyNest keeps me sane. The calendar sync and reminder features ensure I never miss important appointments or milestones.',
       rating: 5,
@@ -93,7 +109,7 @@ const Home = () => {
   const faqs = [
     {
       question: 'How secure is my child\'s information?',
-      answer: 'We use enterprise-grade encryption and comply with all major privacy regulations including GDPR and COPPA. Your data is stored securely and never shared with third parties without your explicit consent.',
+      answer: 'We use enterprise-grade encryption and comply with all major privacy regulations. Your data is stored securely and never shared with third parties without your explicit consent.',
     },
     {
       question: 'Can I share access with family members?',
@@ -138,7 +154,7 @@ const Home = () => {
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              A comprehensive platform designed to simplify parenting, connect families,
+              A comprehensive platform designed to simplify child care, connect families,
               and ensure your child thrives at every stage.
             </p>
 
@@ -190,7 +206,7 @@ const Home = () => {
               Built for modern families
             </h2>
             <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-              Powerful features that make parenting easier and keep your family connected.
+              Powerful features that make child care easier and keep your family connected.
             </p>
           </div>
 
@@ -267,7 +283,7 @@ const Home = () => {
               Loved by families everywhere
             </h2>
             <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-              See what parents are saying about BabyNest.
+              See what families are saying about BabyNest.
             </p>
           </div>
 
@@ -333,9 +349,9 @@ const Home = () => {
           <div className="text-center mt-8">
             <p className="text-muted-foreground">
               Still have questions?{' '}
-              <a href="#" className="text-foreground font-medium hover:underline">
+              <Link to="/contact" className="text-foreground font-medium hover:underline">
                 Contact our support team
-              </a>
+              </Link>
             </p>
           </div>
         </div>
