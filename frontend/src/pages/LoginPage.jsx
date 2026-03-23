@@ -157,7 +157,7 @@ const LoginPage = () => {
                 value={formData.email}
                 onChange={handleChange}
                 error={errors.email}
-                placeholder="you@example.com"
+                placeholder="your.email@example.com"
                 className="h-12"
               />
               {errors.email && (
