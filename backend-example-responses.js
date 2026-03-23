@@ -4,7 +4,7 @@
 // Admin User Login Response
 // ==========================================
 // POST /api/auth/login
-// Body: { email: "admin@childnest.com", password: "Admin@123" }
+// Body: { email: "admin@babynest.com", password: "Admin@123" }
 
 const adminLoginResponse = {
   success: true,
@@ -14,7 +14,7 @@ const adminLoginResponse = {
     user: {
       id: "1",
       name: "Admin User",
-      email: "admin@childnest.com",
+      email: "admin@babynest.com",
       role: "admin", // ← This is critical for admin access
       avatar: null,
       createdAt: "2026-01-15T10:00:00Z"
@@ -26,7 +26,7 @@ const adminLoginResponse = {
 // Regular User Login Response
 // ==========================================
 // POST /api/auth/login
-// Body: { email: "parent@childnest.com", password: "Parent@123" }
+// Body: { email: "parent@babynest.com", password: "Parent@123" }
 
 const userLoginResponse = {
   success: true,
@@ -36,7 +36,7 @@ const userLoginResponse = {
     user: {
       id: "2",
       name: "John Parent",
-      email: "parent@childnest.com",
+      email: "parent@babynest.com",
       role: "user", // ← Regular user, no admin access
       avatar: null,
       createdAt: "2026-02-01T10:00:00Z"
@@ -49,12 +49,12 @@ const userLoginResponse = {
 // ==========================================
 const testCredentials = {
   admin: {
-    email: "admin@childnest.com",
+    email: "admin@babynest.com",
     password: "Admin@123",
     expectedBehavior: "Can access /admin routes"
   },
   user: {
-    email: "parent@childnest.com",
+    email: "parent@babynest.com",
     password: "Parent@123",
     expectedBehavior: "Cannot access /admin routes, redirects to /"
   }
@@ -164,7 +164,7 @@ const usersListResponse = {
       {
         id: "1",
         name: "Admin User",
-        email: "admin@childnest.com",
+        email: "admin@babynest.com",
         role: "admin",
         isBlocked: false,
         createdAt: "2026-01-15T10:00:00Z"
@@ -172,7 +172,7 @@ const usersListResponse = {
       {
         id: "2",
         name: "John Parent",
-        email: "parent@childnest.com",
+        email: "parent@babynest.com",
         role: "user",
         isBlocked: false,
         createdAt: "2026-02-01T10:00:00Z"
