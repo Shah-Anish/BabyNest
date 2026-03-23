@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Separator } from './ui/separator';
 
 const Footer = () => {
@@ -24,7 +24,7 @@ const Footer = () => {
 						<div className="flex items-center gap-4">
 								<a href="#" className="hover:text-foreground transition-colors">Privacy</a>
 								<a href="#" className="hover:text-foreground transition-colors">Terms</a>
-								<a href="#" className="hover:text-foreground transition-colors">Contact</a>
+								<Link to="/contact" className="hover:text-foreground transition-colors">Contact</Link>
 						</div>
 					</div>
 					{user && (
