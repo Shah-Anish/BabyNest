@@ -19,7 +19,7 @@ const Footer = () => {
 				<div className="max-w-7xl mx-auto px-6 py-8">
 					<div className="flex flex-col md:flex-row items-center justify-between gap-4">
 						<div className="flex flex-col md:flex-row items-center gap-4 text-sm text-muted-foreground">
-						<p>© {year} ChildNest. All rights reserved.</p>
+						<p>© {year} BabyNest. All rights reserved.</p>
 						<Separator orientation="vertical" className="hidden md:block h-4" />
 						<div className="flex items-center gap-4">
 								<a href="#" className="hover:text-foreground transition-colors">Privacy</a>
