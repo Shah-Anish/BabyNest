@@ -90,9 +90,9 @@ const Emergency = () => {
   }
 
   const emergencyNumbers = [
-    { name: "Emergency Services", number: "911", description: "Police, Fire, Ambulance" },
-    { name: "Poison Control", number: "1-800-222-1222", description: "24/7 Poison Help" },
-    { name: "Crisis Hotline", number: "988", description: "Mental Health Crisis" },
+    { name: "Police", number: "100", description: "Nepal Police Emergency" },
+    { name: "Ambulance", number: "102", description: "Emergency Medical Service" },
+    { name: "Fire Service", number: "101", description: "Fire & Rescue Service" },
   ];
 
   return (
@@ -208,7 +208,7 @@ const Emergency = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  placeholder="e.g., John Doe"
+                  placeholder="e.g., Ram Bahadur"
                   className="w-full px-3 py-2 border border-input rounded-md bg-background"
                 />
               </div>
@@ -232,7 +232,7 @@ const Emergency = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  placeholder="e.g., +1 9876543210"
+                  placeholder="e.g., +977 9841234567"
                   className="w-full px-3 py-2 border border-input rounded-md bg-background"
                 />
               </div>
@@ -255,7 +255,7 @@ const Emergency = () => {
                   name="address"
                   value={formData.address}
                   onChange={handleInputChange}
-                  placeholder="e.g., 123 Main Street"
+                  placeholder="e.g., Baneshwor, Kathmandu"
                   rows="2"
                   className="w-full px-3 py-2 border border-input rounded-md bg-background resize-none"
                 />
