@@ -2,7 +2,7 @@ import { Link, useLocation, Outlet, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import {
   Shield, Users, FileText, Activity, ScrollText, LayoutDashboard,
-  Menu, X, LogOut, ArrowLeft
+  Menu, X, LogOut
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -72,9 +72,6 @@ const AdminLayout = () => {
         </nav>
 
         <div className="p-3 border-t border-border space-y-1">
-          <Button variant="ghost" className="w-full justify-start gap-3 text-muted-foreground" asChild>
-            <Link to="/dashboard"><ArrowLeft className="w-4 h-4" /> Parent Dashboard</Link>
-          </Button>
           <Button
             variant="ghost"
             className="w-full justify-start gap-3 text-muted-foreground"
