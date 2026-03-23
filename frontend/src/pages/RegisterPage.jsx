@@ -173,7 +173,7 @@ export default function RegisterPage() {
                 value={formData.email}
                 onChange={handleChange}
                 error={errors.email}
-                placeholder="you@example.com"
+                placeholder="your.email@example.com"
                 className="h-12"
               />
               {errors.email && (
@@ -211,7 +211,7 @@ export default function RegisterPage() {
                 value={formData.phone}
                 onChange={handleChange}
                 error={errors.phone}
-                placeholder="9876543210"
+                placeholder="9841234567"
                 maxLength="10"
                 className="h-12"
               />
