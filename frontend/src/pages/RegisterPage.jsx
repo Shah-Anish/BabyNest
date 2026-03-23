@@ -90,7 +90,7 @@ export default function RegisterPage() {
 
         <div className="relative z-10">
           <Link to="/" className="inline-block">
-            <h2 className="text-3xl font-semibold text-primary-foreground">ChildNest</h2>
+            <h2 className="text-3xl font-semibold text-primary-foreground">BabyNest</h2>
           </Link>
         </div>
 
@@ -104,7 +104,7 @@ export default function RegisterPage() {
         </div>
 
         <div className="relative z-10 text-sm text-primary-foreground/60">
-          © 2026 ChildNest. All rights reserved.
+          © 2026 BabyNest. All rights reserved.
         </div>
       </div>
 
@@ -114,7 +114,7 @@ export default function RegisterPage() {
           {/* Logo for mobile */}
           <div className="lg:hidden text-center">
             <Link to="/">
-              <h2 className="text-2xl font-semibold text-foreground">ChildNest</h2>
+              <h2 className="text-2xl font-semibold text-foreground">BabyNest</h2>
             </Link>
           </div>
 
@@ -124,7 +124,7 @@ export default function RegisterPage() {
               Create your account
             </h1>
             <p className="text-muted-foreground">
-              Get started with ChildNest in just a few steps
+              Get started with BabyNest in just a few steps
             </p>
           </div>
 
