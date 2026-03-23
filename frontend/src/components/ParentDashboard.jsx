@@ -44,12 +44,13 @@ const ParentDashboard = () => {
         "fixed lg:sticky top-0 left-0 z-50 h-screen w-64 bg-card border-r border-border flex flex-col transition-transform duration-300 lg:translate-x-0",
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       )}>
-        <div className="h-16 flex items-center px-5 border-b border-border">
-          <Link to="/dashboard" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-display text-sm">B</span>
-            </div>
-            <span className="font-display text-lg">BabyNest</span>
+        <div className="h-20 flex items-center px-5 border-b border-border">
+          <Link to="/dashboard" className="flex items-center">
+            <img
+              src="/BabyNestFullLogo.png"
+              alt="BabyNest"
+              className="h-11 w-auto max-w-[170px] object-contain"
+            />
           </Link>
           <button className="ml-auto lg:hidden" onClick={() => setSidebarOpen(false)}>
             <X className="w-5 h-5" />
