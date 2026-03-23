@@ -29,7 +29,7 @@ const Header = () => {
 			<header className="bg-card/80 backdrop-blur-xl border-b border-border/50 sticky top-0 z-50">
 				<div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 					<Link to="/" className="text-xl font-semibold text-foreground tracking-tight hover:opacity-80 transition-opacity">
-					ChildNest
+					BabyNest
 				</Link>
 
 				<nav className="flex items-center gap-6">

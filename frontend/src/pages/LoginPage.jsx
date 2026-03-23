@@ -93,7 +93,7 @@ const LoginPage = () => {
 
         <div className="relative z-10">
           <Link to="/" className="inline-block">
-            <h2 className="text-3xl font-semibold text-primary-foreground">ChildNest</h2>
+            <h2 className="text-3xl font-semibold text-primary-foreground">BabyNest</h2>
           </Link>
         </div>
 
@@ -107,7 +107,7 @@ const LoginPage = () => {
         </div>
 
         <div className="relative z-10 text-sm text-primary-foreground/60">
-          © 2026 ChildNest. All rights reserved.
+          © 2026 BabyNest. All rights reserved.
         </div>
       </div>
 
@@ -117,7 +117,7 @@ const LoginPage = () => {
           {/* Logo for mobile */}
           <div className="lg:hidden text-center">
             <Link to="/">
-              <h2 className="text-2xl font-semibold text-foreground">ChildNest</h2>
+              <h2 className="text-2xl font-semibold text-foreground">BabyNest</h2>
             </Link>
           </div>
 
