@@ -73,7 +73,7 @@ const Home = () => {
     {
       name: 'Sarah Johnson',
       role: 'Mother of 2',
-      content: 'ChildNest has transformed how we manage our family schedule. Everything we need is in one place, and sharing updates with grandparents has never been easier.',
+      content: 'BabyNest has transformed how we manage our family schedule. Everything we need is in one place, and sharing updates with grandparents has never been easier.',
       rating: 5,
     },
     {
@@ -85,7 +85,7 @@ const Home = () => {
     {
       name: 'Emily Rodriguez',
       role: 'Mother of 3',
-      content: 'As a busy mom of three, ChildNest keeps me sane. The calendar sync and reminder features ensure I never miss important appointments or milestones.',
+      content: 'As a busy mom of three, BabyNest keeps me sane. The calendar sync and reminder features ensure I never miss important appointments or milestones.',
       rating: 5,
     },
   ];
@@ -125,7 +125,7 @@ const Home = () => {
           <div className="text-center space-y-6 max-w-4xl mx-auto">
             <div className="inline-block">
               <span className="inline-flex items-center rounded-full bg-secondary px-4 py-1.5 text-xs font-medium text-foreground ring-1 ring-inset ring-border">
-                Welcome to ChildNest
+                Welcome to BabyNest
               </span>
             </div>
 
@@ -265,7 +265,7 @@ const Home = () => {
               Loved by families everywhere
             </h2>
             <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-              See what parents are saying about ChildNest.
+              See what parents are saying about BabyNest.
             </p>
           </div>
 
@@ -307,7 +307,7 @@ const Home = () => {
               Frequently asked questions
             </h2>
             <p className="text-lg text-muted-foreground">
-              Everything you need to know about ChildNest.
+              Everything you need to know about BabyNest.
             </p>
           </div>
 
@@ -348,7 +348,7 @@ const Home = () => {
                 Ready to get started?
               </h2>
               <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-                Join thousands of families who trust ChildNest for their child care coordination.
+                Join thousands of families who trust BabyNest for their child care coordination.
               </p>
               <div className="pt-4">
                 <Button size="lg" className="rounded-full bg-primary hover:bg-primary/90 px-8 h-12 text-base">
