@@ -23,6 +23,7 @@ import adminRoutes from "./routes/AdminRoutes.js";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./swagger.js";
+import { startReminderScheduler } from "./services/reminderScheduler.js";
 
 dotenv.config();
 
@@ -84,4 +85,7 @@ app.use("/api/audit-logs", auditLogRoutes);
 
 app.listen(process.env.PORT , () => {
   console.log(`Server running on port ${process.env.PORT }`);
+
+  // Start the reminder scheduler after server starts
+  startReminderScheduler();
 });
